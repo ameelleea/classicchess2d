@@ -83,8 +83,8 @@ public abstract class Piece : MonoBehaviour
 
     public void killPiece(){
         this.isDead = true;
-        Destroy(gameObject);
         gc.getUICon().showEatenPieces(this.sr.sprite, this.tag);
+        Destroy(gameObject);
 
         if(this.gameObject.GetComponent<King>() != null){
             gc.gameOn = false;

@@ -20,10 +20,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private Player blackplayer;
 
-    [SerializeField]
-    private Image[] whitepiecesicons = new Image[16];
-    [SerializeField]
-    private Image[] blackpiecesicons = new Image[16];
+    private int blackslots = 0;
+    private int whiteslots = 0;
+
 
     void Awake()
     {
@@ -44,23 +43,18 @@ public class UIController : MonoBehaviour
     }
 
     public void showEatenPieces(Sprite sprite, string tag){
-        bool found = false;
 
         if(tag == "WHITE_PIECE"){
-            for(int i = 0; i < whitepiecesicons.GetLength(0) && !found; i++){
-                if(whitepiecesicons[i].sprite == sprite && whitepiecesicons[i].enabled == false){
-                    whitepiecesicons[i].enabled = true;
-                    found = true;
-                }
-            }
+            GameObject.Find("WhiteSlot (" + whiteslots.ToString() + ")").GetComponent<Image>().color = Color.white;
+            GameObject.Find("WhiteSlot (" + whiteslots.ToString() + ")").GetComponent<Image>().sprite = sprite;
+            whiteslots++;
+            Debug.Log(whiteslots);
         }
         else if(tag == "BLACK_PIECE"){
-            for(int i = 0; i < blackpiecesicons.GetLength(0) && !found; i++){
-                if(blackpiecesicons[i].sprite == sprite && blackpiecesicons[i].enabled == false){
-                    blackpiecesicons[i].enabled = true;
-                    found = true;
-                }
-            }
+            GameObject.Find("BlackSlot (" + blackslots.ToString() + ")").GetComponent<Image>().color = Color.white;
+            GameObject.Find("BlackSlot (" + blackslots.ToString() + ")").GetComponent<Image>().sprite = sprite;
+            blackslots++;
+            Debug.Log(blackslots);
         }
     }
 
